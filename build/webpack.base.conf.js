@@ -11,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
     entry: {
-        vendor: ['jquery', 'draggable', 'gridstack', 'gridstack-jQueryUI'],
+        vendor: ['echarts', 'jquery', 'draggable', 'gridstack', 'gridstack-jQueryUI'],
         app: './src/main.js'
     },
     output: {
@@ -28,7 +28,8 @@ module.exports = {
             '@': resolve('src'),
             'jquery-ui':  path.resolve('./node_modules/jquery-ui/ui'),
             'draggable': 'jquery-ui/widgets/draggable',
-            'gridstack-jQueryUI': 'gridstack/dist/gridstack.jQueryUI'
+            'gridstack': resolve('lib/gridstack/gridstack'),
+            'gridstack-jQueryUI': resolve('lib/gridstack/gridstack.jQueryUI')
         }
     },
     module: {

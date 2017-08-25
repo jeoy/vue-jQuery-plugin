@@ -1,17 +1,6 @@
 <template>
     <div class="hello">
-        <!-- <div class="grid-stack">
-            <div class="grid-stack-item"
-                data-gs-x="0" data-gs-y="0"
-                data-gs-width="4" data-gs-height="2">
-                    <div class="grid-stack-item-content"></div>
-            </div>
-            <div class="grid-stack-item"
-                data-gs-x="4" data-gs-y="0"
-                data-gs-width="4" data-gs-height="4">
-                    <div class="grid-stack-item-content"></div>
-            </div>
-        </div> -->
+        <div id="main" style="width: 600px;height:400px;"></div>
         <h1>{{ msg }}</h1>
         <h2>Essential Links</h2>
         <a @click="print" >1234</a>
@@ -31,6 +20,8 @@
 </template>
 
 <script>
+import echarts from 'echarts';
+
 export default {
     name: 'hello',
     data() {
@@ -40,6 +31,32 @@ export default {
     },
     mounted() {
         $('h1').draggable();
+
+        var myChart = echarts.init(document.getElementById('main'));
+
+         // 指定图表的配置项和数据
+         var option = {
+             title: {
+                 text: 'ECharts 入门示例'
+             },
+             tooltip: {},
+             legend: {
+                 data:['销量']
+             },
+             xAxis: {
+                 data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+             },
+             yAxis: {},
+             series: [{
+                 name: '销量',
+                 type: 'bar',
+                 data: [5, 20, 36, 10, 10, 20]
+             }]
+         };
+
+         // 使用刚指定的配置项和数据显示图表。
+         myChart.setOption(option);
+
         const options = {
             float: false,
         };
