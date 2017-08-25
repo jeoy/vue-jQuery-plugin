@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import 'jquery-ui/ui/widgets/draggable';
+// import 'jquery-ui/ui/widgets/draggable';
 // import 'gridstack/dist/gridstack';
 // import 'gridstack/dist/gridstack.jQueryUI';
 import App from './App.vue';

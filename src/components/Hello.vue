@@ -39,6 +39,7 @@ export default {
         };
     },
     mounted() {
+        $('h1').draggable();
         const options = {
             float: false,
         };
