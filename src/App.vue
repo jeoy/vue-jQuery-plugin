@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
+    <!-- <img src="./assets/logo.png"> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+    name: 'app',
+    mounted() {
+
+    },
 };
+
 </script>
 
 <style>
+@import "../lib/gridstack/css/gridstack.css";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
