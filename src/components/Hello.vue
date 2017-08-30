@@ -11,9 +11,7 @@
 
          <br/>
 
-         <div class="grid-stack">
-             <div class="grid-stack-item-content">
-             </div>
+         <div class="grid-stack grid-stack-instance-1212" data-gs-current-height="0" style="height: 0px;">
          </div>
         </ul>
     </div>
@@ -58,23 +56,23 @@ export default {
          myChart.setOption(option);
 
         const options = {
-            float: false,
+            float: true,
         };
         console.log($('h1')[0].innerText);
         $('.grid-stack').gridstack(options);
 
-        this.grid = $('.grid-stack').data('gridstack');
         new function() {
             this.items = [
-                { x: 0, y: 0, width: 2, height: 2 },
-                { x: 3, y: 1, width: 1, height: 2 },
-                { x: 4, y: 1, width: 1, height: 1 },
-                { x: 2, y: 3, width: 3, height: 1 },
+                {x: 0, y: 0, width: 2, height: 2},
+                {x: 3, y: 1, width: 1, height: 2},
+                {x: 4, y: 1, width: 1, height: 1},
+                {x: 2, y: 3, width: 3, height: 1},
 //                    {x: 1, y: 4, width: 1, height: 1},
 //                    {x: 1, y: 3, width: 1, height: 1},
 //                    {x: 2, y: 4, width: 1, height: 1},
                 {x: 2, y: 5, width: 1, height: 1}
             ];
+
             this.grid = $('.grid-stack').data('gridstack');
             this.addNewWidget = function () {
                 var node = this.items.pop() || {

@@ -11,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
     entry: {
-        vendor: ['echarts', 'jquery', 'draggable', 'gridstack', 'gridstack-jQueryUI'],
+        vendor: ['echarts', 'jquery', 'gridstack'],
         app: './src/main.js'
     },
     output: {
@@ -27,9 +27,8 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
             'jquery-ui':  path.resolve('./node_modules/jquery-ui/ui'),
-            'draggable': 'jquery-ui/widgets/draggable',
             'gridstack': resolve('lib/gridstack/gridstack'),
-            'gridstack-jQueryUI': resolve('lib/gridstack/gridstack.jQueryUI')
+            // 'gridstack-jQueryUI': resolve('lib/gridstack/gridstack.jQueryUI')
         }
     },
     module: {
