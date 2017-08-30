@@ -7,7 +7,7 @@
 
         <div>
              <a class="btn btn-default" id="add-new-widget" href="#">Add Widget</a>
-         </div>
+        </div>
 
          <br/>
 
