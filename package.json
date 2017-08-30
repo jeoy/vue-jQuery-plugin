@@ -104,7 +104,7 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     },
-    "ghooks": {
+    "validate-commit": {
       "commit-msg": "./node_modules/validate-commit-msg/index.js"
     }
   }
