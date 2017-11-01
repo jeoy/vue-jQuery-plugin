@@ -1,7 +1,7 @@
 <template>
     <div class="mobile-config">
          Hello Mobile Config!
-         <el-button type="primary" v-on:click="goShow()" >保存</el-button>
+         <!-- <el-button type="primary" v-on:click="goShow()" >保存</el-button> -->
 
         <div  class="widget-list">
             <div class="sidebar">
@@ -10,8 +10,9 @@
                 </div>
             </div>
         </div>
-
-          <div class="grid-stack grid-stack-6" id="grid1"></div>
+        <div class="drop-area">
+          <div class="grid-stack grid-stack-4" id="grid1"></div>
+        </div>
     </div>
 </template>
 
@@ -33,41 +34,54 @@
         },
         data() {
             return {
-                widgets: [1, 2, 3, 4, 5]
+                widgets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             };
         },
         mounted() {
             this.$nextTick(() => {
                 var options = {
-                    width: 12,
-                    height: 8,
+                    width: 4,
                     float: true,
                     removable: '.trash',
                     removeTimeout: 100,
-                    acceptWidgets: '.grid-stack-item'
+                    acceptWidgets: '.grid-stack-item',
+                    draggable: {
+                        handle: '.grid-stack-item-content',
+                        scroll: true,
+                        appendTo: 'body'
+                    }
                 };
                 $('#grid1').gridstack(options);
 
-                var items = [
-                    {x: 0, y: 0, width: 2, height: 2},
-                    {x: 3, y: 1, width: 1, height: 2},
-                    {x: 4, y: 1, width: 1, height: 1},
-                    {x: 2, y: 3, width: 3, height: 1},
-                    {x: 2, y: 5, width: 1, height: 1}
-                ];
-                $('.grid-stack').each(function() {
-                    var grid = $(this).data('gridstack');
-                    _.each(items, function(node) {
-                        grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
-                            node.x, node.y, node.width, node.height);
-                    }, this);
-                });
+
                 $('.sidebar .grid-stack-item').draggable({
                     revert: 'invalid',
                     handle: '.grid-stack-item-content',
                     scroll: false,
+                    scope: 'datasourceGroup.diList',
                     appendTo: 'body'
                 });
+
+                $('.drop-area').droppable({
+                    scope: 'datasourceGroup.diList'
+                });
+
+                $('.drop-area').on('drop', function(ev, ui) {
+                    var items = [
+                        {x: 0, y: 0, width: 1, height: 1},
+                    ];
+
+                    $('.grid-stack').each(function() {
+                        var grid = $(this).data('gridstack');
+                        _.each(items, function(node) {
+                            grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+                                node.x, node.y, node.width, node.height, true);
+                        }, this);
+                    });
+                });
+
+
+
             });
         }
     };
@@ -76,6 +90,7 @@
 
 <style lang="scss">
     .mobile-config {
+        height: 400px;
         .widget-top {
             border-left: 4px solid #6be0cf;
         }
@@ -93,7 +108,13 @@
         }
 
         #grid1 {
-            // margin-left: 265px;
+            // margin-right: 265px;
+            background: #f5ebc8;
+            min-height: 50px;
+        }
+        .drop-area {
+            min-height: 600px;
+            margin-right: 265px;
             background: lightgoldenrodyellow;
         }
 
@@ -102,21 +123,25 @@
             color: #2c3e50;
             text-align: center;
             background-color: #18bc9c;
+            line-height: 50px;
         }
-        .sidebar {
-            float: right;
+        .widget-list {
+            .sidebar {
+                float: right;
 
-            .grid-stack-item {
-                width: 150px;
-                height: 50px;
-                border: 2px dashed green;
-                text-align: center;
-                line-height: 15px;
-                z-index: 10;
-                background: rgba(0, 255, 0, 0.1);
-                cursor: default;
-                display: block;
+                .grid-stack-item {
+                    width: 150px;
+                    height: 50px;
+                    border: 2px dashed green;
+                    text-align: center;
+                    line-height: 15px;
+                    z-index: 10;
+                    background: rgba(0, 255, 0, 0.1);
+                    cursor: default;
+                    display: block;
+                }
             }
         }
+
     }
 </style>

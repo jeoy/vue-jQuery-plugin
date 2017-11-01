@@ -18,6 +18,7 @@ export default {
 
 <style>
 @import "../lib/gridstack/css/gridstack.css";
+@import "../lib/gridstack/css/gridstack-extra.css";
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

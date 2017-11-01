@@ -10,8 +10,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Gridstack',
-            component: Gridstack,
+            name: 'debug',
+            component: debug,
         },
         {
             path: '/debug',
