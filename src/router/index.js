@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Hello from '../components/Hello.vue';
 import Gridstack from '../components/gridstack-demo.vue';
+import debug from '../components/debug.vue';
 
 Vue.use(Router);
 
@@ -9,8 +10,13 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Hello',
+            name: 'Gridstack',
             component: Gridstack,
+        },
+        {
+            path: '/debug',
+            name: 'debug',
+            component: debug,
         },
     ],
 });
