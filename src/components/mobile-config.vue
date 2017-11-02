@@ -5,13 +5,20 @@
 
         <div  class="widget-list">
             <div class="sidebar">
-                <div class="grid-stack-item" v-for="widget in widgets">
+                <div class="grid-stack-item" v-for="widget in widgetsList">
                     <div class="grid-stack-item-content"> {{widget}}</div>
                 </div>
             </div>
         </div>
         <div class="drop-area">
           <div class="grid-stack grid-stack-4" id="grid1"></div>
+        </div>
+        <div class="wait2add">
+            <gridstack-item
+                v-for="widget in widgets"
+                :widget="widget"
+                :gridstack-obj="gridstackObj">
+            </gridstack-item>
         </div>
     </div>
 </template>
@@ -23,22 +30,26 @@
     // import controller from '../main/widgetArea.js';
     import draggable from 'vuedraggable';
     // import layoutTemplate from './layoutTemplate';
-
+    import gridstackItem from './gridstackitem.vue'
 
     import Vue from 'vue';
 
     export default {
         components: {
-            draggable
+            draggable,
+            gridstackItem
             // layoutTemplate
         },
         data() {
             return {
-                widgets: ['图表1', '图表2', '图表3', '图表4', '图表5', '图表6','图表7',]
+                widgetsList: ['图表1', '图表2', '图表3', '图表4', '图表5', '图表6','图表7'],
+                gridstackObj: null,
+                widgets: []
             };
         },
         mounted() {
             this.$nextTick(() => {
+                let _this = this;
                 var options = {
                     width: 4,
                     float: true,
@@ -54,7 +65,7 @@
                 };
                 $('#grid1').gridstack(options);
 
-
+                this.gridstackObj = $('#grid1').data('gridstack');
                 $('.sidebar .grid-stack-item').draggable({
                     revert: 'invalid',
                     handle: '.grid-stack-item-content',
@@ -72,14 +83,14 @@
                     var items = [
                         {x: 0, y: 0, width: Math.floor(Math.random()*(2-1+1)+1), height: Math.floor(Math.random()*(2-1+1)+1)},
                     ];
-
-                    $('.grid-stack').each(function() {
-                        var grid = $(this).data('gridstack');
-                        _.each(items, function(node) {
-                            grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
-                                node.x, node.y, node.width, node.height, true);
-                        }, this);
-                    });
+                    _this.widgets.push(ui.draggable[0].innerText);
+                    // $('.grid-stack').each(function() {
+                    //     var grid = $(this).data('gridstack');
+                    //     _.each(items, function(node) {
+                    //         grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+                    //             node.x, node.y, node.width, node.height, true);
+                    //     }, this);
+                    // });
                 });
 
 
